@@ -86,7 +86,7 @@
   
   {%for k in sub.product_set.all%}
   <div class='col-sm-6 col-md-4 my-3'>
-    <div class="card" style="width: 18rem;">
+    <div class="card" >
       <img src="{{k.image.url}}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{k.name}},{{k.brand}}</h5>
@@ -111,7 +111,7 @@
   {%for n in j.subcategory_set.all%}
   {%for k in n.product_set.all%}
   <div class='col-sm-6 col-md-4 my-3'>
-    <div class="card" style="width: 18rem;">
+    <div class="card" >
       <img src="{{k.image.url}}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{k.name}},{{k.brand}}</h5>
