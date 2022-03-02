@@ -9,17 +9,14 @@
 {%block body%}
 
 <!-- NAVBAR -->
-<style>
 
-
-</style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
 
     <div >
-      <ul class="subnavbar">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="subnavbar">
         {% for i in cat%}
-        <li class="nav-item dropdown subnavbarlist">
+        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
             {{i.name}}
