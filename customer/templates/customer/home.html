@@ -14,11 +14,10 @@
   @media only screen and(max-width: 480px) {
     #subnavbar {
       display: flex;
-      flex-direction: row !important; 
-      padding-left: 0;
-      margin-bottom: 0;
-      list-style: none;
   }
+  #subnavbarlist {
+    text-decoration:none;
+}
     
   }
 </style>
@@ -26,9 +25,9 @@
   <div class="container-fluid">
 
     <div >
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="subnavbar">
+      <ul id="subnavbar">
         {% for i in cat%}
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" id="subnavbarlist">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
             {{i.name}}
