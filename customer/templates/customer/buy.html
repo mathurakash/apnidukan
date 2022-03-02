@@ -21,7 +21,7 @@
 <div class="container">
 	<div class='row my-5'>
 
-		<div class='col-sm-4 col-md-4'>
+		<div class='col-sm-12 col-md-4'>
 			<div class="card ">
 				<img src="{{prod.image.url}}" class="card-img-top " alt="...">
 				
@@ -29,7 +29,7 @@
 			<p>{% ratings prod %}</p>
 		</div>
 
-		<div class="col-md-8 ">
+		<div class="col-md-8 col-sm-12">
 			<form  method="POST" name="buyform">
 				{% csrf_token %}
 				 <div class="form-row">
