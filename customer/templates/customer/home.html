@@ -1,0 +1,134 @@
+{% extends "customer/master.html"%}
+{%block title%} 
+{%if sub%}
+{{sub.name}}
+{% else %}
+  Homepage
+{% endif %}
+  {%endblock%}
+{%block body%}
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% for i in cat%}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            {{i.name}}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {%for j in i.subcategory_set.all%}
+            <li><a class="dropdown-item" href="{% url 'customer:detail' j.id%}">{{j.name}}</a></li>
+            {%endfor%}
+          </ul>
+        </li>
+        {%endfor%}
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Carousel -->
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+  <!-- Indicators/dots -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+  </div>
+  
+
+  <!-- The slideshow/carousel -->
+  <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://i.ytimg.com/vi/EiAD7CNp4Vo/maxresdefault.jpg" alt="Los Angeles" class="d-block" style="width:100%; height:500px;">
+        <div class="carousel-caption">
+          <h3>Shop Smart</h3>
+          <p>Get Great Dicounts and best offers!!!</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://i.pinimg.com/originals/9a/71/6f/9a716f90fc2e24079b8960168d5ea089.jpg" alt="Chicago" class="d-block" style="width:100%; height:500px;">
+        <div class="carousel-caption">
+          <h3>Men</h3>
+          <p>Formals ||Casulas</p>
+        </div> 
+      </div>
+      <div class="carousel-item">
+        <img src="https://finndit.com/assets/upload_file/company/V_D_Retails.jpg" alt="New York" class="d-block" style="width:100%; height:500px;">
+        <div class="carousel-caption">
+          <h3>Women</h3>
+          <p>Formals || Casulas</p>
+        </div>  
+      </div>
+    </div>
+    
+    <!-- Left and right controls/icons -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+<!-- card -->
+{% load ratings %}
+
+{% if sub %}
+
+<div class="container">
+<div class='row'>
+  
+  {%for k in sub.product_set.all%}
+  <div class='col-sm-6 col-md-4 my-3'>
+    <div class="card" style="width: 18rem;">
+      <img src="{{k.image.url}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{k.name}},{{k.brand}}</h5>
+        <h6>{{k.price}},{{k.discount}}%</h6>
+        <p>{{k.desc}}</p>
+        <p>{% ratings k %}
+
+        <p>
+          <a href="{%url 'customer:prod' k.id%}" class="btn btn-primary">view</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  {%endfor%}
+</div>
+</div>
+{% else %}
+
+<div class="container">
+<div class='row'>
+  {%for j in cat%}
+  {%for n in j.subcategory_set.all%}
+  {%for k in n.product_set.all%}
+  <div class='col-sm-6 col-md-4 my-3'>
+    <div class="card" style="width: 18rem;">
+      <img src="{{k.image.url}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{k.name}},{{k.brand}}</h5>
+        <h6>{{k.price}},{{k.discount}}%</h6>
+        <p>{{k.desc}}</p>
+        <p>{% ratings k %}</p>
+
+        <p>
+          <a href="{%url 'customer:prod' k.id%}" class="btn btn-primary">view</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  {%endfor%}
+  {%endfor%}
+  {%endfor%}
+</div>
+</div>
+{% endif %}
+{%endblock%}
